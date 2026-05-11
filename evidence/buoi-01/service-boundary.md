@@ -2,11 +2,11 @@
 
 ## 1. Thông tin nhóm
 
-- Tên nhóm: [Điền tên nhóm]
-- Lớp: [Điền lớp]
-- Thành viên: [Điền tên các thành viên]
+- Tên nhóm: Nhóm 14
+- Lớp: Công nghệ thông tin 17-09
+- Thành viên: Trịnh Minh Quân, Nguyễn Nhật Quang, Bùi Anh Đức, Lê Cao Tất Thành
 - Service nhóm phụ trách: AI Vision Analysis Service
-- Sản phẩm tổng thể của lớp: [Tên dự án lớn của môn học]
+- Sản phẩm tổng thể của lớp: Smart Campus Operations Platform
 
 ## 2. Actor (Đối tượng tương tác)
 
@@ -99,7 +99,7 @@ flowchart TD
     Client -- "POST JSON (image_url)" --> Gateway
     Gateway -- "Raw Data" --> Validator
 
-    Validator -- "422 Error (Nếu sai format)" -.-> Client
+    Validator -. "422 Error (Nếu sai format)" .-> Client
     Validator -- "Valid Data" --> AICore
 
     AICore -- "Tải ảnh" --> Internet
