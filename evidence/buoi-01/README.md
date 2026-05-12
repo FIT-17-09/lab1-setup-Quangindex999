@@ -4,12 +4,12 @@ Thư mục này dùng để nộp minh chứng thiết lập môi trường lab.
 
 ## Sinh viên điền thông tin
 
-- Họ tên:
-- Mã sinh viên:
-- Nhóm:
-- Vai trò dự kiến trong nhóm:
-- Hệ điều hành:
-- Ghi chú:
+- Họ tên: Nguyễn Nhật Quang
+- Mã sinh viên: 1771020576
+- Nhóm: 14
+- Vai trò dự kiến trong nhóm: Backend - FastAPI
+- Hệ điều hành: Windows 11
+- Ghi chú: Nothing is change
 
 ## Các file minh chứng nên có
 
