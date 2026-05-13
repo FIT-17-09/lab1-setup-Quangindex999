@@ -87,28 +87,34 @@ Service nào gọi đến service này?
 
 ```mermaid
 flowchart TD
-    %% Định nghĩa các node
-    Client[Nhóm Camera A2]
-    Gateway[FastAPI Gateway]
-    Validator[Pydantic Data Validator]
-    AICore[AI Processing Engine]
-    Internet((Internet / Image Source))
-    Response[JSON Response]
+    %% Định nghĩa các hệ thống (Các node)
+    Camera[Camera Stream]
+    CoreBiz[Core Business\n(Nghiệp vụ lõi)]
+    Analytics[Analytics\n(Thống kê)]
+    Internet((Internet /\nNguồn ảnh))
 
-    %% Luồng đi của dữ liệu
-    Client -- "POST JSON (image_url)" --> Gateway
-    Gateway -- "Raw Data" --> Validator
+    %% Ranh giới hệ thống AI Vision
+    subgraph AIVision["AI Vision Service (Nhóm A4)"]
+        Gateway[FastAPI Gateway]
+        Validator[Data Validator]
+        AIEngine[AI Engine (YOLO/Mock)]
+    end
 
-    Validator -. "422 Error (Nếu sai format)" .-> Client
-    Validator -- "Valid Data" --> AICore
+    %% Luồng 1: Tương tác với Camera (Synchronous)
+    Camera -- "1. Yêu cầu (POST JSON)" --> Gateway
+    Gateway --> Validator
+    Validator --> AIEngine
+    AIEngine -- "2. Tải ảnh" --> Internet
+    Internet -- "3. Trả Bytes" --> AIEngine
+    AIEngine -- "4. Trả kết quả (200 OK)" --> Camera
 
-    AICore -- "Tải ảnh" --> Internet
-    Internet -- "Image Bytes" --> AICore
-
-    AICore -- "Phân tích & Đóng gói" --> Response
-    Response -- "HTTP 200 OK" --> Client
+    %% Luồng 2: Tương tác với các hệ thống khác (Asynchronous / Push)
+    AIEngine -. "5a. Gửi cảnh báo (khi risk cao)" .-> CoreBiz
+    AIEngine -. "5b. Cung cấp dữ liệu thống kê" .-> Analytics
 
     %% Style
-    style Gateway fill:#f9f,stroke:#333,stroke-width:2px
-    style AICore fill:#bbf,stroke:#333,stroke-width:2px
+    style AIVision fill:#f4f4f9,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
+    style Camera fill:#e1f5fe,stroke:#0288d1
+    style CoreBiz fill:#fff3e0,stroke:#f57c00
+    style Analytics fill:#e8f5e9,stroke:#388e3c
 ```

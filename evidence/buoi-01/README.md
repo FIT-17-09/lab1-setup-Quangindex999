@@ -4,7 +4,7 @@ Thư mục này dùng để nộp minh chứng thiết lập môi trường lab.
 
 ## Sinh viên điền thông tin
 
-- Họ tên: Nguyễn Nhật Quang
+- Họ tên: Nguyễn Nhật Quang12
 - Mã sinh viên: 1771020576
 - Nhóm: 14
 - Vai trò dự kiến trong nhóm: Backend - FastAPI
