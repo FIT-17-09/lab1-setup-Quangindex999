@@ -88,19 +88,19 @@ Service nào gọi đến service này?
 ```mermaid
 flowchart TD
     %% Định nghĩa các hệ thống (Các node)
-    Camera[Camera Stream]
-    CoreBiz[Core Business\n(Nghiệp vụ lõi)]
-    Analytics[Analytics\n(Thống kê)]
-    Internet((Internet /\nNguồn ảnh))
+    Camera["Camera Stream"]
+    CoreBiz["Core Business<br/>(Nghiệp vụ lõi)"]
+    Analytics["Analytics<br/>(Thống kê)"]
+    Internet[["Internet /<br/>Nguồn ảnh"]]
 
     %% Ranh giới hệ thống AI Vision
     subgraph AIVision["AI Vision Service (Nhóm A4)"]
-        Gateway[FastAPI Gateway]
-        Validator[Data Validator]
-        AIEngine[AI Engine (YOLO/Mock)]
+        Gateway["FastAPI Gateway"]
+        Validator["Data Validator"]
+        AIEngine["AI Engine (YOLO/Mock)"]
     end
 
-    %% Luồng 1: Tương tác với Camera (Synchronous)
+    %% Luồng 1: Tương tác với Camera Synchronous
     Camera -- "1. Yêu cầu (POST JSON)" --> Gateway
     Gateway --> Validator
     Validator --> AIEngine
@@ -108,7 +108,7 @@ flowchart TD
     Internet -- "3. Trả Bytes" --> AIEngine
     AIEngine -- "4. Trả kết quả (200 OK)" --> Camera
 
-    %% Luồng 2: Tương tác với các hệ thống khác (Asynchronous / Push)
+    %% Luồng 2: Tương tác với các hệ thống khác Asynchronous / Push
     AIEngine -. "5a. Gửi cảnh báo (khi risk cao)" .-> CoreBiz
     AIEngine -. "5b. Cung cấp dữ liệu thống kê" .-> Analytics
 
